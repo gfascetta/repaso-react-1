@@ -9,6 +9,10 @@ const Fetch = () => {
 
   const {data, isLoading, error, handleSubmit} = useAxios()
 
+  const showCard = (personaje) => {
+    return <Card {...personaje} />
+  }
+
   return (
     <>
       <div>
@@ -16,7 +20,7 @@ const Fetch = () => {
         <Search handleSubmit={handleSubmit}/>
         { isLoading && <p> Cargando... </p>}
         { error && <p>{error}</p>}
-        { data && <Card {...data} />}
+        { data ? data.results.map(e => showCard(e)) : 'No se encontraron coincidencias a tu búsqueda' }
       </div>
     </>
   )

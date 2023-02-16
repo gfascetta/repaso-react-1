@@ -13,15 +13,16 @@ export const useAxios = () => {
         setData(null)
         setError(false)
         setIsLoading(true)
+
     
         try{
-            // let selectedCharacter = character.trim()
-            // console.log(selectedCharacter)
-            const {data} = await axios.get(`https://rickandmortyapi.com/api/character`)
-            console.log(data)
+            let selectedCharacter = character.trim()
+            console.log("selecterChatacter==>", selectedCharacter)
+            const {data} = await axios.get(`https://rickandmortyapi.com/api/character/?name=${selectedCharacter}`)
+            console.log("data del fetch==>", data)
             setData(data)
         }catch(error){
-            console.log(error)
+            console.log("error ==>", error)
             setError('hubo un error')
         }
         setIsLoading(false)

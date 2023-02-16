@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const InputSearchStyled = styled.input`
@@ -7,7 +7,7 @@ const InputSearchStyled = styled.input`
     border-radius: 15px;
     padding: 5px;
     background-color: black;
-    color: blanchedalmond
+    color: blanchedalmond;
 `
 
 const ButtonSubmitStyled = styled.button`
@@ -20,10 +20,16 @@ const ButtonSubmitStyled = styled.button`
 `
 
 
-const Search = () => {
+const Search = ({handleSubmit}) => {
+
+    const [inputValue, setInputValue] = useState('');
+    const handleChange = (e) => {
+        setInputValue(e.target.value)
+    }
+
   return (
-    <form>
-        <InputSearchStyled type="text" />
+    <form onSubmit={(e) => handleSubmit(e, inputValue)}>
+        <InputSearchStyled type="text" onChange={handleChange} />
         <ButtonSubmitStyled type="submit">Buscar</ButtonSubmitStyled>
     </form>
   )
